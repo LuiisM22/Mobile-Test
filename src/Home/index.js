@@ -8,6 +8,7 @@ export default () => {
   };
   const onTake = () => {
     Keyboard.dismiss();
+    Actions.pop();
     Actions.take();
   };
   return (

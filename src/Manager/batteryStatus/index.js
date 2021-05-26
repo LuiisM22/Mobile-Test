@@ -71,14 +71,14 @@
 
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/Entypo';
 
 export default class BatteryStatus extends Component {
   render() {
     return (
       <View>
         <Text> Battery </Text>
-        <Icon name="user" style={{fontSize: 50}} />
+        <Icon name="battery" style={{fontSize: 50}} />
       </View>
     );
   }

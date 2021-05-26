@@ -3,31 +3,18 @@ import {Text, View, TouchableOpacity, StyleSheet, Keyboard} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import {BatteryStatus, InternetStatus} from '../../Manager';
 
-const onNext = () => {
-  Keyboard.dismiss();
-  // Actions.pop();
-  Actions.save();
+const onLoad = () => {
+  Actions.load();
 };
 
-const onClear = () => {
-  // Keyboard.dismiss();
-  // Actions.pop();
-  Actions.refresh();
+const onSave = () => {
+  Actions.popTo('home');
 };
 
-const onFlip = () => {
-  // Keyboard.dismiss();
-  // Actions.pop();
-  Actions.refresh();
-};
-
-const onTake = () => {
-  // Keyboard.dismiss();
-  // Actions.pop();
-  Actions.refresh();
-};
-
-export default class TakePicture extends Component {
+export default class SavePicture extends Component {
+  componentDidMount() {
+    Actions.refresh({onBack: () => Actions.home()});
+  }
   render() {
     return (
       <View style={styles.home}>
@@ -37,24 +24,15 @@ export default class TakePicture extends Component {
             <BatteryStatus />
             <InternetStatus />
           </View>
-          <TouchableOpacity style={styles.end} onPress={() => onClear()}>
-            <Text style={styles.Botton}>Clear</Text>
-          </TouchableOpacity>
         </View>
         <View style={styles.pictureFrame}>
-          {/* <TouchableOpacity onPress={() => onLoad()}>
+          <TouchableOpacity onPress={() => onLoad()}>
             <Text style={styles.Botton}>Load Picture from Galery</Text>
-          </TouchableOpacity> */}
+          </TouchableOpacity>
         </View>
         <View style={styles.bottonsFrame}>
-          <TouchableOpacity onPress={() => onFlip()}>
-            <Text style={styles.Bottons}>Flip Camera</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => onTake()}>
-            <Text style={styles.Bottons}>Take Picture</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => onNext()}>
-            <Text style={styles.Bottons}>Next</Text>
+          <TouchableOpacity onPress={() => onSave()}>
+            <Text style={styles.Bottons}>Save this Picture form Gallery</Text>
           </TouchableOpacity>
         </View>
       </View>

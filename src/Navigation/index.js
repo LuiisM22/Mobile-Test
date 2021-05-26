@@ -26,18 +26,19 @@
 // }
 
 import * as React from 'react';
-import {Scene, Router, Stack} from 'react-native-router-flux';
+import {Scene, Router, Stack, Actions} from 'react-native-router-flux';
 import {StyleSheet} from 'react-native';
 import internetStatus from '../Manager/internetStatus';
 import batteryStatus from '../Manager/batteryStatus';
 import TakePicture from '../Actions/takePicture';
 import LoadPicture from '../Actions/loadPicture';
+import SavePicture from '../Actions/savePicture';
 import Home from '../Home';
 
 function Navigation() {
   return (
     <Router>
-      <Stack>
+      <Stack key="root">
         <Scene hideNavBar key="home" title="Home" component={Home} />
         <Scene
           hideNavBar
@@ -51,8 +52,21 @@ function Navigation() {
           title="Internet"
           component={internetStatus}
         />
-        <Scene key="load" title="Load" component={LoadPicture} />
-        <Scene key="take" title="Take" component={TakePicture} />
+        <Scene hideNavBar key="load" title="Load" component={LoadPicture} />
+        <Scene
+          hideNavBar
+          back={true}
+          key="take"
+          title="Take"
+          component={TakePicture}
+        />
+        <Scene
+          back={true}
+          hideNavBar
+          key="save"
+          title="Save"
+          component={SavePicture}
+        />
       </Stack>
     </Router>
   );
